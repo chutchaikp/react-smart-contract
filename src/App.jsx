@@ -25,7 +25,7 @@ function App() {
       const signer = provider.getSigner();
 
       // if check is address or not
-      const isAddress = ethers.utils.getAddress(_to);
+      const isAddress = ethers.utils.isAddress(_to);
       if (!isAddress) {
         setError('Invalid Address!');
         return;
@@ -36,15 +36,14 @@ function App() {
         value: ethers.utils.parseEther(_amount),
       });
     } catch (error) {
-      console.log(error);
+      console.log(error.message);
     }
   };
 
   return (
     <div className="App">
-      <h3>Send ETH payment</h3>
-
       <form className="card" onSubmit={handleSubmit}>
+        <h3>Send ETH payment</h3>
         <input type="text" name="to" />
         <input type="text" name="amount" />
         <input type="submit" value="PAY NOW" />
